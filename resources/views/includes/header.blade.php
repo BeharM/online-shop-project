@@ -68,9 +68,9 @@
 <script>
     function menu(e){
         if( e.name === 'menu'){
-            document.getElementById('sidebar').style.marginTop = "150px";
+            if(document.getElementById('sidebar')) document.getElementById('sidebar').style.marginTop = "150px";
         }else{
-            document.getElementById('sidebar').style.marginTop = "0px";
+            if(document.getElementById('sidebar')) document.getElementById('sidebar').style.marginTop = "0px";
         }
         let list = document.querySelector('ul');
         e.name === 'menu'

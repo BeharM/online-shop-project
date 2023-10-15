@@ -76,7 +76,7 @@ Follow these steps to install and set up your Laravel project:
    php artisan db:seed
    ```
 
-7**Storage Link**:
+7. **Storage Link**:
 
    You need tp link storage using:
 
@@ -84,7 +84,7 @@ Follow these steps to install and set up your Laravel project:
    php artisan storage:link
    ```
 
-8**Start the Development Server**:
+8. **Start the Development Server**:
 
    Run the following command to start the development server:
 
@@ -94,7 +94,7 @@ Follow these steps to install and set up your Laravel project:
 
    Your Laravel application should now be accessible at `http://127.0.0.1:8000`.
 
-9.**Run NPM**:
+9. **Run NPM**:
 
    Run the following command to start the development server:
 
@@ -102,9 +102,9 @@ Follow these steps to install and set up your Laravel project:
    npm run dev
    ```
    
-9**Access the Application**:
+10. **Access the Application**:
 
-Open your web browser and go to `http://localhost:8000` to access your Laravel application. You can now log in using the provided credentials or register a new user as needed.
+    Open your web browser and go to `http://localhost:8000` to access your Laravel application. You can now log in using the provided credentials or register a new user as needed.
 
 ## Conclusion
 
