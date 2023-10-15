@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->double('engine_size');
             $table->double('price');
             $table->string('photo');
+            $table->tinyInteger('active');
             $table->foreignIdFor(\App\Models\User::class, 'created_by');
             $table->timestamps();
         });
