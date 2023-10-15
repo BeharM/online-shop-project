@@ -1,6 +1,6 @@
 # Project Installation Guide
 
-This document provides step-by-step instructions on how to install and set up the project you have created using Laravel.
+This document provides step-by-step instructions on how to install and set up the project.
 
 ## Prerequisites
 
@@ -86,7 +86,7 @@ Follow these steps to install and set up your Laravel project:
 
    Your Laravel application should now be accessible at `http://localhost:8000`.
 
-8**Run NPM**:
+8.**Run NPM**:
 
    Run the following command to start the development server:
 
@@ -96,7 +96,7 @@ Follow these steps to install and set up your Laravel project:
    
 9**Access the Application**:
 
-   Open your web browser and go to `http://localhost:8000` to access your Laravel application. You can now log in using the provided credentials or register a new user as needed.
+Open your web browser and go to `http://localhost:8000` to access your Laravel application. You can now log in using the provided credentials or register a new user as needed.
 
 ## Conclusion
 
