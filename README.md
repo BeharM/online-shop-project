@@ -68,7 +68,7 @@ Follow these steps to install and set up your Laravel project:
    php artisan migrate
    ```
 
-6. **Database Seeding (Optional)**:
+6. **Database Seeding **:
 
    You can run the seeder(s) using:
 
@@ -76,7 +76,15 @@ Follow these steps to install and set up your Laravel project:
    php artisan db:seed
    ```
 
-7. **Start the Development Server**:
+7**Storage Link**:
+
+   You need tp link storage using:
+
+   ```bash
+   php artisan storage:link
+   ```
+
+8**Start the Development Server**:
 
    Run the following command to start the development server:
 
@@ -84,9 +92,9 @@ Follow these steps to install and set up your Laravel project:
    php artisan serve
    ```
 
-   Your Laravel application should now be accessible at `http://localhost:8000`.
+   Your Laravel application should now be accessible at `http://127.0.0.1:8000`.
 
-8.**Run NPM**:
+9.**Run NPM**:
 
    Run the following command to start the development server:
 
@@ -101,6 +109,8 @@ Open your web browser and go to `http://localhost:8000` to access your Laravel a
 ## Conclusion
 
 Admin Login: <br>email = admin@gmail.com <br>
+password = password <br>
+Simple User Login: <br>email = user@gmail.com <br>
 password = password <br>
 or you can register new user and use your credentials.
 

@@ -25,6 +25,13 @@
                         <a href="{{ url('/admin/dashboard') }}" class="text-lg hover:text-cyan-500 duration-500">Dashboard</a>
                     </li>
                 @endif
+                <li class="mx-2 my-4 md:my-0 md:pl-4">
+                    <form action="{{Route('logout')}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-lg hover:text-cyan-500 duration-500">Log Out</button>
+                    </form>
+                </li>
             @else
                 <li class="mx-2 my-4 md:my-0 md:pl-4">
                     <a href="{{ route('login.create') }}" class="text-lg hover:text-cyan-500 duration-500">Log in</a>

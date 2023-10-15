@@ -46,16 +46,20 @@ class ProductRepository implements BaseRepositoryInterface
 
             if ($product->save()){
                 $productTags = $request->get('tags');
-                $data = [];
-                //get all cart orders and store in db as item for created order above
-                foreach ($productTags as $key=> $value){
-                    $data[$key]['product_id'] = $product->id;
-                    $data[$key]['tag_id'] = $value;
-                    $data[$key]['created_at'] = Carbon::now();
-                }
+                if ($productTags) {
+                    $data = [];
+                    //get all cart orders and store in db as item for created order above
+                    foreach ($productTags as $key => $value) {
+                        $data[$key]['product_id'] = $product->id;
+                        $data[$key]['tag_id'] = $value;
+                        $data[$key]['created_at'] = Carbon::now();
+                    }
 
-                if (ProductTags::insert($data)){//bulk insert order items
-                    return $product;
+                    if (ProductTags::insert($data)) {//bulk insert order items
+                        return $product;
+                    }
+                }else{
+                    return  $product;
                 }
             }
 
