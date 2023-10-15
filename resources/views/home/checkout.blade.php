@@ -27,7 +27,10 @@
             <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-xl">
                 <div class="md:flex">
                     <div class="w-full px-6 py-8 md:p-8">
-                        <h2 class="text-2xl font-bold text-gray-800">Checkout</h2>
+                        <h2 class="text-2xl font-bold text-gray-800">
+                            Checkout
+                            <p>{{$totalPrice}}$ - <span class="text-red-600">{{sizeof(Session::get('cart'))}} Products</span></p>
+                        </h2>
                         <p class="mt-4 text-gray-600">Please fill out the form below to complete your purchase.</p>
                         <form action="{{Route('checkout.store')}}" method="POST">
                             @csrf

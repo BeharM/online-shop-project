@@ -18,7 +18,15 @@ class CheckoutController extends Controller
     public function index()
     {
         if (Auth::user()) {
-            return view('home.checkout');
+            //get all cart orders also total of cart
+            $sessionCart = Session::get('cart');
+            $totalPrice = 0;
+            if ($sessionCart) {
+                $totalPrice = array_sum(array_map(function($item) {
+                    return $item['price']*$item['quantity'];
+                }, $sessionCart));
+            }
+            return view('home.checkout', compact('totalPrice'));
         }else{
             return redirect()->route('login.create')->with('error', 'Please Login Before Purchase Orders');
         }
