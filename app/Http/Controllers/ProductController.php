@@ -13,6 +13,7 @@ class ProductController
         $this->productRepository = $productRepository;
     }
 
+    //add product to card - save into session
     public function addToCart($id)
     {
         if(!$product = $this->productRepository->find($id)) {
@@ -27,7 +28,7 @@ class ProductController
                     "quantity" => 1,
                     "price" => $product->price,
                     "model" => $product->model,
-                    "photo" => $product->photo
+                    "image" => $product->image
                 ]
             ];
             //save session
@@ -46,12 +47,13 @@ class ProductController
             "quantity" => 1,
             "price" => $product->price,
             "model" => $product->model,
-            "photo" => $product->photo
+            "image" => $product->image
         ];
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
+    //update cart quantity
     public function update(Request $request)
     {
         if($request->get('id') and $request->get('quantity')) {
@@ -79,6 +81,7 @@ class ProductController
         ]);
 
     }
+    //remove a product from cart
     public function remove(Request $request, $id)
     {
         $cart = session()->get('cart');

@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        //get all products, also include the search filter
         $filter = null;
         if($keywords = $request->get('search')){
             $filter['search'] = $keywords;
@@ -41,6 +42,7 @@ class HomeController extends Controller
      */
     public function orders(Request $request)
     {
+        //get all cart orders also total of cart
         $sessionCart = Session::get('cart');
         $totalPrice = 0;
         if ($sessionCart) {
@@ -52,6 +54,7 @@ class HomeController extends Controller
         return view('home.view-orders', compact('orders', 'totalPrice'));
     }
 
+    //create new pagination for all order items added to cart(session)
     public function paginate($items, $perPage, $page, $request)
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);

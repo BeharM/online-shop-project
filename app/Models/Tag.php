@@ -29,6 +29,7 @@ class Tag extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'created_at'=> 'datetime',
     ];
 
     public function items()

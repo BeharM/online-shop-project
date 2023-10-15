@@ -22,10 +22,11 @@ class CreateProductsTable extends Migration
             $table->dateTime('registration_date');
             $table->double('engine_size');
             $table->double('price');
-            $table->string('photo');
+            $table->string('image');
             $table->tinyInteger('active');
             $table->foreignIdFor(\App\Models\User::class, 'created_by');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

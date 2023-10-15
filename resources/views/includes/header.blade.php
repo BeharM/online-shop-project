@@ -19,6 +19,20 @@
             <li class="mx-2 my-4 md:my-0">
                 <a href="{{Route('home')}}" class="text-lg hover:text-cyan-500 duration-500"> Home</a>
             </li>
+            @auth
+                @if(auth()->user()->role == 'admin')
+                    <li class="mx-2 my-4 md:my-0 md:pl-4">
+                        <a href="{{ url('/admin/dashboard') }}" class="text-lg hover:text-cyan-500 duration-500">Dashboard</a>
+                    </li>
+                @endif
+            @else
+                <li class="mx-2 my-4 md:my-0 md:pl-4">
+                    <a href="{{ route('login.create') }}" class="text-lg hover:text-cyan-500 duration-500">Log in</a>
+                </li>
+                <li class="mx-2 my-4 md:my-0">
+                    <a href="{{ route('register.create') }}" class="text-lg hover:text-cyan-500 duration-500">Register</a>
+                </li>
+            @endauth
             <!-- Cart -->
             <li class="mx-2 my-4 md:my-0">
                 <a href="{{Route('orders')}}" class="group -m-2 flex items-center p-2" data-tooltip-target="tooltip-default">
@@ -39,23 +53,6 @@
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
             </li>
-            @auth
-                @if(auth()->user()->role == 'admin')
-                    <li class="mx-2 my-4 md:my-0 md:pl-4">
-                        <a href="{{ url('/dashboard') }}" class="text-lg hover:text-cyan-500 duration-500">Dashboard</a>
-                    </li>
-                @endif
-            @else
-                <li class="mx-2 my-4 md:my-0 md:pl-4">
-                    <a href="{{ route('login.create') }}" class="text-lg hover:text-cyan-500 duration-500">Log in</a>
-                </li>
-
-                @if (Route::has('register'))
-                    <li class="mx-2 my-4 md:my-0">
-                        <a href="{{ route('register.create') }}" class="text-lg hover:text-cyan-500 duration-500">Register</a>
-                    </li>
-                @endif
-            @endauth
         </ul>
     @endif
     </div>
@@ -63,6 +60,11 @@
 
 <script>
     function menu(e){
+        if( e.name === 'menu'){
+            document.getElementById('sidebar').style.marginTop = "150px";
+        }else{
+            document.getElementById('sidebar').style.marginTop = "0px";
+        }
         let list = document.querySelector('ul');
         e.name === 'menu'
             ? (e.name = "close",list.classList.add('top-[800px]'), list.classList.add('opacity-100'))

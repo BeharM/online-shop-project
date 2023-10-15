@@ -12,7 +12,11 @@
                 @foreach($products as $product)
                     <div class="bg-white rounded-lg shadow-lg p-4">
                     <div class="relative overflow-hidden">
-                        <img class="object-cover w-70 h-45" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Product">
+                        @if($product->image)
+                            <img class="object-cover w-70 h-45" style="min-height: 160px" src="{{asset('storage/images/'.$product->id.'-'.$product->image)}}" alt="image.jpg">
+                        @else
+                            <img class="object-cover w-70 h-45" style="min-height: 160px" src="{{asset('images\logo.png')}}" alt="image.jpg">
+                        @endif
                         <div class="absolute inset-0 bg-black opacity-40"></div>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mt-2">
@@ -44,13 +48,28 @@
                         </span>
                         <form action="{{Route('products.addToCart', $product->id)}}" method="POST">
                             @csrf
-                            <button type="submit" class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800">Add to Cart</button>
+                            @php $color = 'bg-gray-900';@endphp
+                            @php $qnt = 0 ;@endphp
+                            @if($carts = Session::has('cart'))
+                                @if(isset(session('cart')[$product->id]))
+                                    @php $color = 'bg-green-600' @endphp
+                                    @php $qnt = session('cart')[$product->id]['quantity'] @endphp
+                                @endif
+                            @endif
+                            <button type="submit" class="{{$color}} text-white py-1 px-2 rounded-full font-bold hover:bg-gray-800">
+                                +Add
+                                @if($qnt > 0)
+                                <span class="bg-red-100 text-red-800 text-xs font-medium mr-1 px-2 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                    {{$qnt}}
+                                </span>
+                                @endif
+                            </button>
                         </form>
                     </div>
 
                     <div class="flex items-center mt-2 mb-0">
                         @foreach($product->tags as $tag)
-                            <span class="text-blue-600 font-bold text-lg mr-1">
+                            <span class="text-blue-600 font-bold text-xs mr-1">
                                 #{{$tag->name}}
                             </span>
                         @endforeach

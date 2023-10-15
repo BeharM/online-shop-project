@@ -44,6 +44,7 @@ class CheckoutController extends Controller
         DB::beginTransaction();
         try {
             if (Auth::user()) {
+                //create new order for login user
                 if ($order = Order::create([
                     'user_id' => auth()->id(),
                     'name' => $request->get('name'),
@@ -52,12 +53,13 @@ class CheckoutController extends Controller
                     'cvv' => (int)$request->get('cvv'),
                 ])) {
                     $data = [];
+                    //get all cart orders and store in db as item for created order above
                     foreach (session('cart') as $key => $cart){
-                        $data['product_id'] = $key;
-                        $data['order_id'] = $order->id;
-                        $data['created_at'] = Carbon::now();
+                        $data[$key]['product_id'] = $key;
+                        $data[$key]['order_id'] = $order->id;
+                        $data[$key]['created_at'] = Carbon::now();
                     }
-                    if (OrderItems::insert($data)){
+                    if (OrderItems::insert($data)){//bulk insert order items
                         Session::forget('cart');
                         DB::commit();
                     }
@@ -66,7 +68,7 @@ class CheckoutController extends Controller
                     return redirect()->back()->withErrors(['email' => 'An Error Has Occurred!Orders were not saved']);
                 }
 
-                return redirect()->route('home')->with('success', "Orders successfully saved.");
+                return redirect()->route('home')->with('success', "Purchase Orders successfully saved.");
             }else{
                 return redirect()->route('login.create')->with('error', 'Please Login Before Purchase Orders');
             }

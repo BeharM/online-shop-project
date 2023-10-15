@@ -37,7 +37,7 @@
                         @foreach($orders as $key=> $order)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="w-32 p-4">
-                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Apple Watch">
+                                <img class="rounded-lg bg-cover bg-center items-center" src="{{asset('storage/images/'.$key.'-'.$order['image'])}}" alt="">
                             </td>
                             <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                                {{$order['name']}}
@@ -99,9 +99,9 @@
                             <span class="font-semibold">${{$totalPrice}}</span>
                         </div>
                         @if($orders->count() > 0)
-                        <a href="{{Route('checkout')}}" class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full block text-center">
-                            <i class="fa fa-money"></i> Checkout
-                        </a>
+                            <a href="{{Route('checkout')}}" class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full block text-center">
+                                <i class="fa fa-money"></i> Checkout
+                            </a>
                         @endif
                     </div>
                 </div>
